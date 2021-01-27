@@ -5,8 +5,11 @@ import { getPosts } from '../redux/actions';
 type Props = {
   getPosts: Function,
   posts: any,
+  navigation: {
+    navigate:Function 
+  }
 }
-const Posts = ({getPosts, posts} : Props) => {
+const Posts = ({getPosts, navigation} : Props) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const data: any = useSelector((state: any) => state.posts)
@@ -31,19 +34,23 @@ const Posts = ({getPosts, posts} : Props) => {
     setPage(page + 1)
     getNewPosts(page)
   }
+  const detailsPage = () => {
+    navigation.navigate("JSON Details");
+  }
   const itemData = (item: any) => {
     const data = item.item;
     console.log("item data=>", data)
     return (
       <ScrollView>
+        {/* <Button onPress={detailsPage} title = "test"/> */}
         <table>
-          <th>
+          <th >
             <td>Page</td>
             <td>Title</td>
             <td>URL</td>
             <td>Author</td>
           </th>
-          <tr>
+          <tr >
           <td>{page}</td>
           <td>{data.title}</td>
           <td>{data.url}</td>
