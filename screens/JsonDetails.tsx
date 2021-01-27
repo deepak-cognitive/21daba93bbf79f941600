@@ -1,16 +1,17 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
 const Details = () => {
   const data: any = useSelector((state: any) => state.posts)
 
-  return (
-    <>
-      <View>
-        <Text>{data}</Text>
-      </View>
-      </>
+  return (   
+    <ScrollView testID="details-wrapper" >
+    <Text >
+        {JSON.stringify(data, null, 10)}
+    </Text>
+    </ScrollView>
+
   )
 }
 export default Details;

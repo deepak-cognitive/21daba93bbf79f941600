@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, ScrollView } from 'react-native';
+import { ActivityIndicator, FlatList, TouchableOpacity } from 'react-native';
 import { connect, useSelector } from 'react-redux';
 import { getPosts } from '../redux/actions';
 type Props = {
@@ -35,13 +35,13 @@ const Posts = ({getPosts, navigation} : Props) => {
     getNewPosts(page)
   }
   const detailsPage = () => {
-    navigation.navigate("JSON Details");
+    navigation.navigate("Details");
   }
   const itemData = (item: any) => {
     const data = item.item;
     console.log("item data=>", data)
     return (
-      <ScrollView>
+      <TouchableOpacity onPress= {()=>{detailsPage()}}>
         {/* <Button onPress={detailsPage} title = "test"/> */}
         <table>
           <th >
@@ -57,7 +57,7 @@ const Posts = ({getPosts, navigation} : Props) => {
           <td>{ data.author }</td>
           </tr>
         </table>
-     </ScrollView>
+     </TouchableOpacity>
     )
   }
   return (
